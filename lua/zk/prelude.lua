@@ -1,6 +1,7 @@
 vim.g.mapleader = ' '
-vim.o.bg='light'
 vim.wo.colorcolumn = '80'
+vim.o.rnu=true
+vim.o.nu=true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
