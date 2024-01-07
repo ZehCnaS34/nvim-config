@@ -25,5 +25,10 @@ km.normal(
 -- project navigation
 km.normal('<leader><leader>', require('telescope.builtin').buffers)
 km.normal('<leader>pf', require('telescope.builtin').find_files)
+km.normal('<leader>pb', require('telescope.builtin').buffers)
+km.normal('<leader>pt', require('telescope.builtin').builtin)
+km.normal('<leader>/', require('telescope.builtin').live_grep)
+
+km.normal('<leader>gs', ':Neogit<cr>')
 
 
