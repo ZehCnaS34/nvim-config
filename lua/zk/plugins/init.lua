@@ -10,5 +10,6 @@ require("lazy").setup({
 	},
 	require('zk.plugins.lualine').spec,
 	require('zk.plugins.telescope').spec,
+	require('zk.plugins.vcs').spec,
 })
 
