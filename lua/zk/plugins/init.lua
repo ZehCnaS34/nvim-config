@@ -12,5 +12,6 @@ require("lazy").setup({
 	require('zk.plugins.telescope').spec,
 	require('zk.plugins.vcs').spec,
 	require('zk.plugins.lsp').spec,
+	require('zk.plugins.tree-sitter').spec,
 })
 
