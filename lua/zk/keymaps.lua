@@ -1,11 +1,11 @@
 local km = {}
 
-km.insert = function(lhs, rhs) 
-    vim.keymap.set('i', lhs, rhs, { nowait = true })
+km.insert = function(lhs, rhs, desc) 
+    vim.keymap.set('i', lhs, rhs, { nowait = true, desc = desc })
 end
 
 km.normal = function(lhs, rhs) 
-    vim.keymap.set('n', lhs, rhs, { nowait = true })
+    vim.keymap.set('n', lhs, rhs, { nowait = true, desc = desc })
 end
 
 -- quick normal mode
@@ -25,7 +25,7 @@ km.normal(
 -- project navigation
 km.normal('<leader><leader>', require('telescope.builtin').buffers)
 km.normal('<leader>pf', require('telescope.builtin').find_files)
-km.normal('<leader>pb', require('telescope.builtin').buffers)
+km.normal('<leader>pb', require('telescope.builtin').buffers, "[P]roject [B]uffers")
 km.normal('<leader>pt', require('telescope.builtin').builtin)
 km.normal('<leader>/', require('telescope.builtin').live_grep)
 

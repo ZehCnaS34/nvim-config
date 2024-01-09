@@ -5,12 +5,13 @@ local init = function()
 	vim.o.timeoutlen = 300
 end
 
+local opts = {}
+
 M.spec = {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 	init = init,
-	opts = {
-	}
+	opts = opts
 }
 
 return M
