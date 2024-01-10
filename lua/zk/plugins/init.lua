@@ -12,5 +12,7 @@ require("lazy").setup({
 	require('zk.plugins.telescope').spec,
 	require('zk.plugins.vcs').spec,
 	require('zk.plugins.lsp').spec,
+	require('zk.plugins.startup').spec,
+	require('zk.plugins.oil').spec,
 })
 
