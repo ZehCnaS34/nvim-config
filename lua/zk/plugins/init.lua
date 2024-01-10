@@ -14,5 +14,6 @@ require("lazy").setup({
 	require('zk.plugins.lsp').spec,
 	require('zk.plugins.startup').spec,
 	require('zk.plugins.oil').spec,
+	require('zk.plugins.tree-sitter').spec,
 })
 
