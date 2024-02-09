@@ -8,6 +8,10 @@ km.normal = function(lhs, rhs)
     vim.keymap.set('n', lhs, rhs, { nowait = true, desc = desc })
 end
 
+km.visual = function(lhs, rhs) 
+    vim.keymap.set('v', lhs, rhs, { nowait = true, desc = desc })
+end
+
 -- quick normal mode
 km.insert('kj', '<C-[>')
 km.insert('jk', '<C-[>')
@@ -32,3 +36,5 @@ km.normal('<leader>/', require('telescope.builtin').live_grep)
 km.normal('<leader>gs', ':Neogit<cr>')
 
 
+-- conjure. this should be only applied in a particular mode
+km.normal('<leader>mee', ':ConjureEvalRootForm<cr>')

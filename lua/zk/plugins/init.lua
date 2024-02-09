@@ -16,5 +16,8 @@ require("lazy").setup({
 	require('zk.plugins.oil').spec,
 	require('zk.plugins.tree-sitter').spec,
 	require('zk.plugins.completion').spec,
+	require('zk.plugins.conjure').spec,
+    'miikanissi/modus-themes.nvim',
+    { url = 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim' }
 })
 
