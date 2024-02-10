@@ -1,6 +1,0 @@
-return {
-    spec = {
-        'Olical/conjure'
-    },
-}
-

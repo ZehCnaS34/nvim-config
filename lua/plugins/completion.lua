@@ -1,6 +1,4 @@
-local scope = {}
-
-scope.spec = {
+return {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
@@ -41,5 +39,3 @@ scope.spec = {
         })
     end
 }
-
-return scope

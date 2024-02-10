@@ -1,13 +1,3 @@
-local scope = {}
-
-scope.spec = {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':TSUpdate',
-}
-
 -- vim.defer_fn(function() 
 --     require('nvim-treesitter.configs').setup {
 --         ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
@@ -21,4 +11,11 @@ scope.spec = {
 --     }
 -- end, 0)
 
-return scope
+return {
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    build = ':TSUpdate',
+}
+

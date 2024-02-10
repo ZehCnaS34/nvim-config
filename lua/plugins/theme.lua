@@ -1,10 +1,7 @@
-local scope = {}
-
-scope.spec = {
+return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = {},
 }
 
-return scope
