@@ -16,6 +16,12 @@ return {
                     ['rust-analyzer'] = {},
                 }
             }
+            lspconfig.clojure_lsp.setup {}
+            lspconfig.docker_compose_language_service.setup {}
+            lspconfig.dockerls.setup {}
+            lspconfig.htmx.setup {}
+            lspconfig.html.setup {}
+            lspconfig.marksman.setup {}
 
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "welp" })
 
