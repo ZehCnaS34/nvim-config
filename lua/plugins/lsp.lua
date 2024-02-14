@@ -22,6 +22,7 @@ return {
             lspconfig.htmx.setup {}
             lspconfig.html.setup {}
             lspconfig.marksman.setup {}
+            lspconfig.clangd.setup {}
 
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "welp" })
 
@@ -38,6 +39,6 @@ return {
     {
         'williamboman/mason.nvim',
         config = {},
-    }
+    },
 }
 
