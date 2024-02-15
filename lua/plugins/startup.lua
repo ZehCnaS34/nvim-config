@@ -1,4 +1,6 @@
 return {
-    'mhinz/vim-startify'
+    {
+        'mhinz/vim-startify'
+    }
 }
 
