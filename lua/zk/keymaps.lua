@@ -35,6 +35,8 @@ km.normal('<leader>/', require('telescope.builtin').live_grep)
 
 km.normal('<leader>gs', ':Neogit<cr>')
 
+km.normal('<leader><tab>', ':b#<cr>')
+
 
 -- conjure. this should be only applied in a particular mode
 km.normal('<leader>mee', ':ConjureEvalRootForm<cr>')

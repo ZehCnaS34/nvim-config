@@ -23,6 +23,7 @@ return {
             lspconfig.html.setup {}
             lspconfig.marksman.setup {}
             lspconfig.clangd.setup {}
+            lspconfig.lua_ls.setup {}
 
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "welp" })
 
