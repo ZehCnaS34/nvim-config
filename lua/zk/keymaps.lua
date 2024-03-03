@@ -1,14 +1,14 @@
 local km = {}
 
-km.insert = function(lhs, rhs, desc) 
+km.insert = function(lhs, rhs, desc)
     vim.keymap.set('i', lhs, rhs, { nowait = true, desc = desc })
 end
 
-km.normal = function(lhs, rhs) 
+km.normal = function(lhs, rhs, desc)
     vim.keymap.set('n', lhs, rhs, { nowait = true, desc = desc })
 end
 
-km.visual = function(lhs, rhs) 
+km.visual = function(lhs, rhs, desc)
     vim.keymap.set('v', lhs, rhs, { nowait = true, desc = desc })
 end
 
@@ -37,6 +37,8 @@ km.normal('<leader>gs', ':Neogit<cr>')
 
 km.normal('<leader><tab>', ':b#<cr>')
 
+-- buffer management
+km.normal('<leader>bd', ':bdel<cr>')
 
 -- conjure. this should be only applied in a particular mode
 km.normal('<leader>mee', ':ConjureEvalRootForm<cr>')
