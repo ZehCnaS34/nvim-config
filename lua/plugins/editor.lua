@@ -8,6 +8,11 @@ return {
         config = {}
     },
     {
+        'tpope/vim-sleuth',
+        config = function()
+        end
+    },
+    {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
         dependencies = {
@@ -22,8 +27,8 @@ return {
                 build = "make install_jsregexp"
             },
         },
-        config = function() 
-            local cmp = require'cmp'
+        config = function()
+            local cmp = require 'cmp'
 
             cmp.setup({
                 snippet = {

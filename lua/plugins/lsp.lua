@@ -3,13 +3,13 @@ return {
         'neovim/nvim-lspconfig',
         dependencies = {
             { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-            { "folke/neodev.nvim", opts = {} },
+            { "folke/neodev.nvim",  opts = {} },
             "mason.nvim",
             "williamboman/mason-lspconfig.nvim",
         },
         config = function()
-            local lspconfig = require'lspconfig'
-            lspconfig.tsserver.setup{}
+            local lspconfig = require 'lspconfig'
+            lspconfig.tsserver.setup {}
             -- lspconfig.lua.setup{}
             lspconfig.rust_analyzer.setup {
                 settings = {
@@ -38,7 +38,7 @@ return {
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
                     vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-                    vim.keymap.set('n', '<space>ff', function ()
+                    vim.keymap.set('n', '<space>ff', function()
                         vim.lsp.buf.format { async = true }
                     end)
                 end,
@@ -50,4 +50,3 @@ return {
         config = {},
     },
 }
-

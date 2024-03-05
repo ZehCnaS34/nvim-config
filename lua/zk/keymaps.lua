@@ -20,9 +20,9 @@ km.insert('jk', '<C-[>')
 -- TODO: make this only work for lua files...
 km.normal(
     '<leader>cr', -- not the best choice
-    function ()
-        vim.cmd[[:source %]]
-        vim.cmd[[:echom "[reloaded] ".expand("%")]]
+    function()
+        vim.cmd [[:source %]]
+        vim.cmd [[:echom "[reloaded] ".expand("%")]]
     end
 )
 

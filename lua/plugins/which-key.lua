@@ -7,4 +7,3 @@ return {
         vim.o.timeoutlen = 300
     end,
 }
-

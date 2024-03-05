@@ -4,7 +4,7 @@ return {
         keys = {
             "<leader>ht", "<cmd>echom hello<cr>"
         },
-        init = function ()
+        init = function()
             print("awesome")
         end
     }
