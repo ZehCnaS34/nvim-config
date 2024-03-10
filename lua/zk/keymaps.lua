@@ -42,3 +42,11 @@ km.normal('<leader>bd', ':bdel<cr>')
 
 -- conjure. this should be only applied in a particular mode
 km.normal('<leader>mee', ':ConjureEvalRootForm<cr>')
+
+km.normal('<leader>ws', ':split<cr>', 'Split window')
+km.normal('<leader>wv', ':vsplit<cr>', 'Split window vertically')
+km.normal('<leader>wh', '<C-w>h', 'Focus on left window')
+km.normal('<leader>wj', '<C-w>j', 'Focus on down window')
+km.normal('<leader>wk', '<C-w>k', 'Focus on up window')
+km.normal('<leader>wl', '<C-w>l', 'Focus on right window')
+km.normal('<leader>wd', '<C-w>c', 'Close current window')
