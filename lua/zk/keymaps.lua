@@ -50,3 +50,5 @@ km.normal('<leader>wj', '<C-w>j', 'Focus on down window')
 km.normal('<leader>wk', '<C-w>k', 'Focus on up window')
 km.normal('<leader>wl', '<C-w>l', 'Focus on right window')
 km.normal('<leader>wd', '<C-w>c', 'Close current window')
+
+km.normal('<leader>fs', ':w<cr>', 'Save Window')
