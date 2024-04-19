@@ -1,5 +1,15 @@
 return {
     {
+        dir = "~/.config/nvim/lua/zk/keymaps",
+        main = "zk.keymaps",
+        opts = {}
+    },
+    {
+        dir = "~/.config/nvim/lua/zk/styling",
+        main = "zk.styling",
+        opts = {}
+    },
+    {
         'stevearc/dressing.nvim',
         opts = {},
     },
