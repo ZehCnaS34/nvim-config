@@ -12,7 +12,7 @@ scope.keymaps = {
     end
 }
 
-scope.setup = function()
+scope.setup = function(config)
     local km = scope.keymaps
 
     -- quick normal mode

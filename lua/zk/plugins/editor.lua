@@ -1,12 +1,7 @@
 return {
     {
-        dir = "~/.config/nvim/lua/zk/keymaps",
-        main = "zk.keymaps",
-        opts = {}
-    },
-    {
-        dir = "~/.config/nvim/lua/zk/styling",
-        main = "zk.styling",
+        dir = vim.fn.stdpath("config").."/lua/zk",
+        main = "zk.boot",
         opts = {}
     },
     {
