@@ -10,7 +10,7 @@ return {
     },
     {
         'm4xshen/autoclose.nvim',
-        config = {}
+        opts = {}
     },
     {
         'tpope/vim-sleuth',

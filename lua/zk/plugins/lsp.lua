@@ -47,6 +47,6 @@ return {
     },
     {
         'williamboman/mason.nvim',
-        config = {},
+        opts = {},
     },
 }

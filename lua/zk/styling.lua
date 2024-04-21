@@ -7,5 +7,4 @@ scope.setup = function (config)
     -- require 'lualine'.setup {}
 end
 
-
 return scope
