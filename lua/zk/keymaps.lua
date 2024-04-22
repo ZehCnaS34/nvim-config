@@ -2,19 +2,24 @@ local scope = {}
 
 local function description_to_command(desc)
     local words = vim.split(desc, " ")
+    local descs = {}
     local chars = {}
 
     for i, word in ipairs(words) do
         chars[i] = string.sub(word, 1, 1)
+        descs[i] = "[" .. string.sub(word, 1, 1) ..  "]" .. string.sub(word, 2, #word)
     end
 
-    return "<leader>" .. vim.iter(chars):join("")
+    return {
+        lhs = "<leader>" .. vim.iter(chars):join(""),
+        desc = vim.iter(descs):join(" ")
+    }
 end
 
 scope.keymaps = {
     basic = function(desc, action)
-        local lhs = description_to_command(desc)
-        vim.keymap.set('n', lhs, action, { nowait = true, desc = desc })
+        local opt = description_to_command(desc)
+        vim.keymap.set('n', opt.lhs, action, { nowait = true, desc = opt.desc })
     end,
     insert = function(lhs, rhs, desc)
         vim.keymap.set('i', lhs, rhs, { nowait = true, desc = desc })
@@ -45,21 +50,21 @@ scope.setup = function(config)
     )
 
     -- project navigation
-    km.normal('<leader><leader>', require('telescope.builtin').buffers)
+    km.normal('<leader><leader>', require('telescope.builtin').buffers, "choose buffer")
     km.basic('project files', require('telescope.builtin').find_files)
     km.basic('project buffers', require('telescope.builtin').buffers)
     km.basic('project grep', require('telescope.builtin').live_grep)
-    km.normal('<leader>pt', require('telescope.builtin').builtin)
+    km.basic('telescope builtin', require('telescope.builtin').builtin)
 
-    km.normal('<leader>gs', ':Neogit<cr>')
+    km.basic("git status", ":Neogit<cr>")
 
-    km.normal('<leader><tab>', ':b#<cr>')
+    km.normal('<leader><tab>', ':b#<cr>', 'last buffer')
 
     -- buffer management
-    km.normal('<leader>bd', ':bdel<cr>')
+    km.basic('buffer delete', ':bdel<cr>')
 
     -- conjure. this should be only applied in a particular mode
-    km.normal('<leader>mee', ':ConjureEvalRootForm<cr>')
+    -- km.normal('<leader>mee', ':ConjureEvalRootForm<cr>')
 
     km.normal('<leader>ws', ':split<cr>', 'window split')
     km.normal('<leader>wv', ':vsplit<cr>', 'window vsplit')
