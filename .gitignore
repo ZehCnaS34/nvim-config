@@ -1,2 +1,2 @@
 .DS_Store
-lua/plugins/dev.lua
+#lua/plugins/dev.lua
