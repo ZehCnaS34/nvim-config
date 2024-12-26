@@ -10,9 +10,11 @@ return {
             "sindrets/diffview.nvim",
             "nvim-telescope/telescope.nvim",
         },
-        config = true
+        config = function()
+            require'neogit'.setup({})
+        end
     },
-    {
-        import = 'zk.plugins'
-    }
+    -- {
+    --     import = 'zk.plugins'
+    -- }
 }

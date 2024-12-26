@@ -1,10 +1,11 @@
 local scope = {}
 
-scope.setup = function (config)
+scope.setup = function ()
     vim.o.bg = [[dark]]
-    -- vim.cmd [[colors tokyonight-night]]
-    vim.cmd[[colors modus_vivendi]]
-    -- require 'lualine'.setup {}
+    vim.cmd [[colors tokyonight]]
+    -- vim.cmd [[colors solarized]]
+    -- vim.cmd [[colors modus]]
+    vim.o.scl = "yes:1"
 end
 
 return scope

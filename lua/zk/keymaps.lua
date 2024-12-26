@@ -7,7 +7,7 @@ local function description_to_command(desc)
 
     for i, word in ipairs(words) do
         chars[i] = string.sub(word, 1, 1)
-        descs[i] = "[" .. string.sub(word, 1, 1) ..  "]" .. string.sub(word, 2, #word)
+        descs[i] = "[" .. string.upper(string.sub(word, 1, 1)) ..  "]" .. string.sub(word, 2, #word)
     end
 
     return {
@@ -17,10 +17,15 @@ local function description_to_command(desc)
 end
 
 scope.keymaps = {
+    --- @param desc string
+    --- @param action string | function
     basic = function(desc, action)
         local opt = description_to_command(desc)
         vim.keymap.set('n', opt.lhs, action, { nowait = true, desc = opt.desc })
     end,
+    --- @param lhs string
+    --- @param rhs string | function
+    --- @param desc string | nil
     insert = function(lhs, rhs, desc)
         vim.keymap.set('i', lhs, rhs, { nowait = true, desc = desc })
     end,
@@ -32,7 +37,7 @@ scope.keymaps = {
     end
 }
 
-scope.setup = function(config)
+scope.setup = function()
     local km = scope.keymaps
 
     -- quick normal mode
@@ -50,12 +55,6 @@ scope.setup = function(config)
     )
 
     -- project navigation
-    km.normal('<leader><leader>', require('telescope.builtin').buffers, "choose buffer")
-    km.basic('project files', require('telescope.builtin').find_files)
-    km.basic('project buffers', require('telescope.builtin').buffers)
-    km.basic('project grep', require('telescope.builtin').live_grep)
-    km.basic('telescope builtin', require('telescope.builtin').builtin)
-
     km.basic("git status", ":Neogit<cr>")
 
     km.normal('<leader><tab>', ':b#<cr>', 'last buffer')

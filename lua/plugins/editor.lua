@@ -1,10 +1,5 @@
 return {
     {
-        dir = vim.fn.stdpath("config").."/lua/zk",
-        main = "zk.boot",
-        opts = {}
-    },
-    {
         'stevearc/dressing.nvim',
         opts = {},
     },
