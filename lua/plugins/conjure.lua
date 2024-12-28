@@ -1,5 +1,5 @@
 return {
-    dir = "~/Workspaces/Contrib/conjure",
+    'Olical/conjure',
     ft = { "clojure" },
     dependencies = {
         {

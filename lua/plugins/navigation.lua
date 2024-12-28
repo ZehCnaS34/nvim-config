@@ -5,19 +5,17 @@ return {
         -- tag = '0.1.5',
         dependencies = {
             'nvim-lua/plenary.nvim',
-            -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
         },
         config = function(_, opts)
-            local telescope = require('telescope')
-            telescope.setup({
-                defaults = {
-                    border = false,
-                }
-            })
-            -- telescope.load_extension('fzf')
             local km = require 'zk.keymaps'.keymaps
             local builtin = require 'telescope.builtin'
             local themes = require 'telescope.themes'
+            local telescope = require('telescope')
+            telescope.setup({
+                defaults = themes.get_ivy({})
+            })
+            telescope.load_extension('fzf')
 
             km.normal('<leader><leader>', function()
                 builtin.buffers(themes.get_ivy(opts))
