@@ -1,7 +1,9 @@
 return {
     {
-        'stevearc/dressing.nvim',
-        opts = {},
+        'folke/snacks.nvim',
+        opts = {
+            lazygit = {}
+        }
     },
     {
         'm4xshen/autoclose.nvim',
@@ -18,12 +20,8 @@ return {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
-            'saadparwaiz1/cmp_luasnip',
-            {
-                "L3MON4D3/LuaSnip",
-                version = "v2.*",
-                build = "make install_jsregexp"
-            },
+            { 'hrsh7th/cmp-vsnip' },
+            { 'hrsh7th/vim-vsnip' },
         },
         config = function()
             local cmp = require 'cmp'
@@ -31,7 +29,7 @@ return {
             cmp.setup({
                 snippet = {
                     expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
+                        vim.fn['vsnip#anonymous'](args.body)
                     end,
                 },
                 window = {},
@@ -44,7 +42,7 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
-                    { name = 'luasnip' },
+                    { name = 'vsnip' },
                 }, {
                     { name = 'buffer' }
                 })
