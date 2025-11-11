@@ -8,25 +8,33 @@ return {
             "williamboman/mason-lspconfig.nvim",
         },
         config = function()
-            local lspconfig = require 'lspconfig'
-            lspconfig.gopls.setup {}
-            lspconfig.ts_ls.setup {}
-            -- lspconfig.lua.setup{}
-            lspconfig.rust_analyzer.setup {
+            local config = vim.lsp.config
+
+            config('gopls', {})
+            config('ts_ls', {})
+            config('rust_analyzer', {
                 settings = {
                     ['rust-analyzer'] = {},
                 }
+            })
+            config('clojure_lsp', {})
+            config('docker_compose_language_service', {})
+            config('dockerls', {})
+            config('htmx', {})
+            config('html', {})
+            config('marksman', {})
+            config('clangd', {})
+            config('luals', {})
+            config('pyright', {})
+            config('zls', {})
+
+            config['pyright'] = {
+                filetypes={'py'}
             }
-            lspconfig.clojure_lsp.setup {}
-            lspconfig.docker_compose_language_service.setup {}
-            lspconfig.dockerls.setup {}
-            lspconfig.htmx.setup {}
-            lspconfig.html.setup {}
-            lspconfig.marksman.setup {}
-            lspconfig.clangd.setup {}
-            lspconfig.lua_ls.setup {}
-            lspconfig.pyright.setup {}
-            lspconfig.zls.setup {}
+
+            config['lua_ls'] = {}
+
+            vim.lsp.enable('lua_ls')
 
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "welp" })
 
