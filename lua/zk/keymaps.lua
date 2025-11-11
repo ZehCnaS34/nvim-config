@@ -55,7 +55,9 @@ scope.setup = function()
     )
 
     -- project navigation
-    km.basic("git status", ":Neogit<cr>")
+    km.basic("git status", function ()
+        require'snacks'.lazygit.open()
+    end)
 
     km.normal('<leader><tab>', ':b#<cr>', 'last buffer')
 
