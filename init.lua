@@ -1,11 +1,31 @@
-vim.api.nvim_create_autocmd('User', {
-    pattern = 'LazyDone',
-    callback = function ()
-        require'zk.keymaps'.setup()
-        require'zk.styling'.setup()
-    end
-})
+-- organic neovim config
+require'zehcnas34.prelude'
+local add = MiniDeps.add
 
-require'zk.prelude'
 
+require'mini.pick'.setup({})
+vim.cmd[[noremap <silent> <leader>pf :lua MiniPick.builtin.files()<cr>]]
+
+
+add {
+  source = 'nvim-tree/nvim-web-devicons'
+}
+
+require('nvim-web-devicons').setup()
+
+add {
+    source = 'nvim-treesitter/nvim-treesitter',
+    checkout = 'master',
+    monitor = 'main',
+    hooks = {
+        post_checkout = function()
+            vim.cmd[[TSUpdate]]
+        end
+    }
+}
+
+require('nvim-treesitter.configs').setup{
+    ensure_installed = { 'lua', 'vimdoc' },
+    highlight = { enable = true },
+}
 
