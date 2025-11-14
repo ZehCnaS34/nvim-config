@@ -1,3 +1,25 @@
+-- live reload
+Z34 = {
+    modules = {}
+}
+
+function Z34.reload()
+    for _, module in ipairs(Z34.modules) do
+        module_name = "zehcnas34."..module
+        package.loaded[module_name]=nil
+        Z34[module]=require(module_name)
+    end
+end
+
+function Z34.setup(opts)
+    for _, module in ipairs(opts.modules) do
+        module_name = "zehcnas34."..module
+        package.loaded[module_name]=nil
+        Z34.modules[module]=require(module_name)
+    end
+end
+
+
 -- options
 vim.g.mapleader = ' '
 vim.o.shiftwidth = 4
@@ -18,5 +40,5 @@ if not vim.loop.fs_stat(mini_path) then
     vim.cmd[[echo "Installed `mini.nvim`" | redraw]]
 end
 
-
 require('mini.deps').setup({ path = { package = path_package }})
+
