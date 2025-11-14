@@ -25,6 +25,10 @@ km.set({'n'}, '<leader>ph', function()
     MiniPick.builtin.help()
 end)
 
+km.set({'n'}, '<leader>pe', function()
+    MiniExtra.pickers.explorer()
+end)
+
 
 -- buffer
 require'mini.bracketed'.setup()

@@ -37,7 +37,24 @@ end
 
 -- options
 require('mini.basics').setup()
+require('mini.extra').setup()
+require('mini.indentscope').setup()
+require('mini.sessions').setup()
+
 vim.g.mapleader = ' '
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.expandtab = true
+
+
+-- start screen
+local starter = require('mini.starter')
+starter.setup({
+    items = {
+        starter.sections.builtin_actions(),
+        starter.sections.recent_files(10, false),
+        starter.sections.sessions(5, true),
+    }
+})
+
+
