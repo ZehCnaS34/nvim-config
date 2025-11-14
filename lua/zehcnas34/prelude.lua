@@ -1,4 +1,20 @@
--- live reload
+-- setup mini.deps
+local path_package = vim.fn.stdpath("data") .. "/site/"
+local mini_path = path_package .. "pack/deps/start/mini.nvim"
+if not vim.loop.fs_stat(mini_path) then
+    vim.cmd[[echo "Installing `mini.nvim`" | redraw]]
+    local clone_cmd = {
+        'git', 'clone', '--filter=blob:none',
+        'https://github.com/nvim-mini/mini.nvim', mini_path
+    }
+    vim.fn.system(clone_cmd)
+    vim.cmd[[packadd mini.nvim | helptags ALL]]
+    vim.cmd[[echo "Installed `mini.nvim`" | redraw]]
+end
+
+require('mini.deps').setup({ path = { package = path_package }})
+
+-- setup global state and live reload
 Z34 = {
     modules = {}
 }
@@ -19,26 +35,9 @@ function Z34.setup(opts)
     end
 end
 
-
 -- options
+require('mini.basics').setup()
 vim.g.mapleader = ' '
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.expandtab = true
-
--- setup mini.deps
-local path_package = vim.fn.stdpath("data") .. "/site/"
-local mini_path = path_package .. "pack/deps/start/mini.nvim"
-if not vim.loop.fs_stat(mini_path) then
-    vim.cmd[[echo "Installing `mini.nvim`" | redraw]]
-    local clone_cmd = {
-        'git', 'clone', '--filter=blob:none',
-        'https://github.com/nvim-mini/mini.nvim', mini_path
-    }
-    vim.fn.system(clone_cmd)
-    vim.cmd[[packadd mini.nvim | helptags ALL]]
-    vim.cmd[[echo "Installed `mini.nvim`" | redraw]]
-end
-
-require('mini.deps').setup({ path = { package = path_package }})
-
