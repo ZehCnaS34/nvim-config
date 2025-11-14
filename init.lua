@@ -1,31 +1,13 @@
--- organic neovim config
+--
+-- organic config
+--
+
 require'zehcnas34.prelude'
-local add = MiniDeps.add
+require'zehcnas34.plugins'
 
-
-require'mini.pick'.setup({})
-vim.cmd[[noremap <silent> <leader>pf :lua MiniPick.builtin.files()<cr>]]
-
-
-add {
-  source = 'nvim-tree/nvim-web-devicons'
-}
-
-require('nvim-web-devicons').setup()
-
-add {
-    source = 'nvim-treesitter/nvim-treesitter',
-    checkout = 'master',
-    monitor = 'main',
-    hooks = {
-        post_checkout = function()
-            vim.cmd[[TSUpdate]]
-        end
+Z34.setup({
+    modules = {
+        'navigation',
+        'scaffold'
     }
-}
-
-require('nvim-treesitter.configs').setup{
-    ensure_installed = { 'lua', 'vimdoc' },
-    highlight = { enable = true },
-}
-
+})
