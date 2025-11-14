@@ -32,6 +32,7 @@ end)
 
 -- buffer
 require'mini.bracketed'.setup()
+require'mini.statusline'.setup()
 
 return API
 
