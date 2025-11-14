@@ -2,6 +2,7 @@ local API = {}
 
 -- files
 require'mini.pick'.setup()
+require'mini.files'.setup()
 
 local km = vim.keymap
 
@@ -27,6 +28,10 @@ end)
 
 km.set({'n'}, '<leader>pe', function()
     MiniExtra.pickers.explorer()
+end)
+
+km.set({'n'}, '-', function()
+    MiniFiles.open()
 end)
 
 
