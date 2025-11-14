@@ -34,6 +34,14 @@ km.set({'n'}, '-', function()
     MiniFiles.open()
 end)
 
+-- windows
+km.set('n', '<leader>ws', ':split<cr>')
+km.set('n', '<leader>wd', ':close<cr>')
+km.set('n', '<leader>wv', ':vsplit<cr>')
+km.set('n', '<c-h>', '<c-w>h')
+km.set('n', '<c-j>', '<c-w>j')
+km.set('n', '<c-k>', '<c-w>k')
+km.set('n', '<c-l>', '<c-w>l')
 
 -- buffer
 require'mini.bracketed'.setup()
