@@ -15,25 +15,25 @@ end
 require('mini.deps').setup({ path = { package = path_package }})
 
 -- setup global state and live reload
-Z34 = {
+z34 = {
     modules = {}
 }
 
-function Z34.module_path(module)
+function z34.module_path(module)
     assert(type(module) == "string", "module must be a string")
     assert(not module:match("%."), "module must not contain a period '.'")
     return "zehcnas34."..module
 end
 
-function Z34.reload()
-    for _, module in ipairs(Z34.modules) do
-        module_name = Z34.module_path(module)
+function z34.reload()
+    for _, module in ipairs(z34.modules) do
+        module_name = z34.module_path(module)
         package.loaded[module_name]=nil
-        Z34[module]=require(module_name)
+        z34[module]=require(module_name)
     end
 end
 
-function Z34.setup(opts)
+function z34.setup(opts)
     -- options
     require('mini.basics').setup()
     require('mini.extra').setup()
@@ -58,7 +58,8 @@ function Z34.setup(opts)
 
     for _, module in ipairs(opts.modules) do
         module_name = "zehcnas34."..module
-        Z34.modules[module]=require(module_name)
+        z34.modules[module]=require(module_name)
     end
 end
+
 
