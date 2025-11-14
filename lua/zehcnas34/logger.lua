@@ -3,7 +3,7 @@
 local API = {}
 
 API.LEVEL_ERROR   = bit.lshift(1, 0)
-API.LEVEL_WARN = bit.lshift(1, 1)
+API.LEVEL_WARNING = bit.lshift(1, 1)
 API.LEVEL_INFO    = bit.lshift(1, 2)
 API.LEVEL_DEBUG   = bit.lshift(1, 3)
 API.LEVEL_TRACE   = bit.lshift(1, 4)
