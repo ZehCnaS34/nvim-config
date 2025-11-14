@@ -34,6 +34,8 @@ function z34.reload()
 end
 
 function z34.setup(opts)
+    local logger = require'zehcnas34.logger'
+
     -- options
     require('mini.basics').setup()
     require('mini.extra').setup()
@@ -59,6 +61,7 @@ function z34.setup(opts)
 
     for _, module in ipairs(opts.modules) do
         module_name = "zehcnas34."..module
+        logger.debug('loading: '..module_name)
         z34.modules[module]=require(module_name)
     end
 end
