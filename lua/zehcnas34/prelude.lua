@@ -40,6 +40,7 @@ require('mini.basics').setup()
 require('mini.extra').setup()
 require('mini.indentscope').setup()
 require('mini.sessions').setup()
+require('mini.pairs').setup()
 
 vim.g.mapleader = ' '
 vim.o.shiftwidth = 4
@@ -56,5 +57,3 @@ starter.setup({
         starter.sections.sessions(5, true),
     }
 })
-
-
