@@ -6,6 +6,10 @@ require'mini.files'.setup()
 
 local km = vim.keymap
 
+local function nleadermap(suffix, rhs)
+    km.set('n', '<leader>'..suffix, rhs)
+end
+
 km.set({'n'}, '<leader>pf', function()
     MiniPick.builtin.files()
 end)
@@ -35,9 +39,9 @@ km.set({'n'}, '-', function()
 end)
 
 -- windows
-km.set('n', '<leader>ws', ':split<cr>')
-km.set('n', '<leader>wd', ':close<cr>')
-km.set('n', '<leader>wv', ':vsplit<cr>')
+nleadermap('ws', '<Cmd>split<cr>')
+nleadermap('wd', '<Cmd>close<cr>')
+nleadermap('wv', '<Cmd>vsplit<cr>')
 km.set('n', '<c-h>', '<c-w>h')
 km.set('n', '<c-j>', '<c-w>j')
 km.set('n', '<c-k>', '<c-w>k')
