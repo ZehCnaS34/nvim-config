@@ -53,9 +53,10 @@ function z34.setup(opts)
     local starter = require('mini.starter')
     starter.setup({
         items = {
-            starter.sections.builtin_actions(),
-            starter.sections.recent_files(10, false),
             starter.sections.sessions(5, true),
+            starter.sections.pick(),
+            starter.sections.recent_files(10, false),
+            starter.sections.builtin_actions(),
         }
     })
 
