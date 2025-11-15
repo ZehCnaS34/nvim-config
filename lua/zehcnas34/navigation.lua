@@ -42,6 +42,11 @@ end)
 nleadermap('ws', '<Cmd>split<cr>')
 nleadermap('wd', '<Cmd>close<cr>')
 nleadermap('wv', '<Cmd>vsplit<cr>')
+nleadermap('wo', '<c-w>o')
+nleadermap('wh', '<c-w>h')
+nleadermap('wj', '<c-w>j')
+nleadermap('wk', '<c-w>k')
+nleadermap('wl', '<c-w>l')
 km.set('n', '<c-h>', '<c-w>h')
 km.set('n', '<c-j>', '<c-w>j')
 km.set('n', '<c-k>', '<c-w>k')
@@ -49,7 +54,6 @@ km.set('n', '<c-l>', '<c-w>l')
 
 -- buffer
 require'mini.bracketed'.setup()
-require'mini.statusline'.setup()
 
 return API
 

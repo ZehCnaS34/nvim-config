@@ -37,17 +37,44 @@ function z34.setup(opts)
     local logger = require'zehcnas34.logger'
 
     -- options
-    require('mini.basics').setup()
-    require('mini.extra').setup()
-    require('mini.indentscope').setup()
-    require('mini.sessions').setup()
-    require('mini.pairs').setup()
-    require('mini.align').setup()
-
     vim.g.mapleader = ' '
     vim.o.shiftwidth = 4
     vim.o.tabstop = 4
     vim.o.expandtab = true
+
+    -- mini
+    require('mini.basics').setup()
+
+    require('mini.extra').setup()
+
+    require('mini.indentscope').setup()
+
+    require('mini.sessions').setup()
+    vim.api.nvim_create_user_command(
+        'Zmksession',
+        function(opts)
+            MiniSessions.write(opts.args)
+        end,
+        {
+            desc = 'create a session using mini session',
+            nargs = 1
+        }
+    )
+    vim.api.nvim_create_user_command(
+        'Zdelsession',
+        function(opts)
+            MiniSessions.delete(opts.args)
+        end,
+        {
+            desc = 'delete a session using mini session',
+            nargs = 1
+        }
+    )
+
+    require('mini.pairs').setup()
+
+    require('mini.align').setup()
+
 
 
     -- start screen
