@@ -42,6 +42,7 @@ function z34.setup(opts)
     require('mini.indentscope').setup()
     require('mini.sessions').setup()
     require('mini.pairs').setup()
+    require('mini.align').setup()
 
     vim.g.mapleader = ' '
     vim.o.shiftwidth = 4
