@@ -1,15 +1,18 @@
 local add = MiniDeps.add
 
--- web dev icons
---
+-- pope
 add {
-  source = 'nvim-tree/nvim-web-devicons'
+    source = 'tpope/vim-sleuth'
+}
+
+-- web dev icons
+add {
+    source = 'nvim-tree/nvim-web-devicons'
 }
 
 require('nvim-web-devicons').setup()
 
 -- tree sitter
---
 add {
     source = 'nvim-treesitter/nvim-treesitter',
     checkout = 'master',
