@@ -25,7 +25,7 @@ add {
 }
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'lua', 'vimdoc' },
+    ensure_installed = { 'lua', 'vimdoc', 'rust', 'python', 'javascript', 'haskell', 'zig' },
     highlight = { enable = true },
 }
 
