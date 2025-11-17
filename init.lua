@@ -9,6 +9,7 @@ z34.setup({
     modules = {
         'style',
         'navigation',
-        'scaffold'
+        'scaffold',
+        'lsp'
     }
 })
