@@ -11,7 +11,8 @@ local function nleadermap(suffix, rhs)
 end
 
 km.set({'n'}, '<leader>pf', function()
-    MiniPick.builtin.files()
+    -- MiniPick.builtin.files()
+    FzfLua.files()
 end)
 
 km.set({'n'}, '<leader><leader>', function()

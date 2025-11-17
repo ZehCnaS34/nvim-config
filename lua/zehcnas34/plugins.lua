@@ -24,8 +24,24 @@ add {
     }
 }
 
+-- languages
 require('nvim-treesitter.configs').setup {
     ensure_installed = { 'lua', 'vimdoc', 'rust', 'python', 'javascript', 'haskell', 'zig' },
     highlight = { enable = true },
 }
 
+
+-- completion
+add {
+    source = 'saghen/blink.cmp',
+    depends = { "rafamadriz/friendly-snippets" },
+}
+require('blink-cmp').setup()
+
+
+-- navigation
+add {
+    source = "ibhagwan/fzf-lua",
+    depends = { "nvim-tree/nvim-web-devicons"}
+}
+require('fzf-lua').setup()
