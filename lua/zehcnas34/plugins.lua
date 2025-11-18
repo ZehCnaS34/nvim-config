@@ -45,3 +45,4 @@ add {
     depends = { "nvim-tree/nvim-web-devicons"}
 }
 require('fzf-lua').setup()
+

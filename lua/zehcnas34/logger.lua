@@ -17,10 +17,10 @@ function API.log(level, msg, table)
 end
 
 
-API.error = function(msg, table) API.log(API.LEVEL_ERROR, msg, table) end
+API.error   = function(msg, table) API.log(API.LEVEL_ERROR, msg, table) end
 API.warning = function(msg, table) API.log(API.LEVEL_WARNING, msg, table) end
-API.info = function(msg, table) API.log(API.LEVEL_INFO, msg, table) end
-API.debug = function(msg, table) API.log(API.LEVEL_DEBUG, msg, table) end
-API.trace = function(msg, table) API.log(API.LEVEL_TRACE, msg, table) end
+API.info    = function(msg, table) API.log(API.LEVEL_INFO, msg, table) end
+API.debug   = function(msg, table) API.log(API.LEVEL_DEBUG, msg, table) end
+API.trace   = function(msg, table) API.log(API.LEVEL_TRACE, msg, table) end
 
 return API
