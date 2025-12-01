@@ -38,7 +38,7 @@ km.set('n', '<c-l>', '<c-w>l')
 -- buffer
 require'mini.bracketed'.setup()
 
--- navigation
+-- git
 nleadermap('gs', '<Cmd>term lazygit<cr>')
 
 return API
