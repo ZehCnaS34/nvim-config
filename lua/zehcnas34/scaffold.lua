@@ -3,7 +3,7 @@ local uv = vim.uv
 local api = vim.api
 local logger = require'zehcnas34.logger'
 
-API.module_dir = vim.fn.expand("~/.config/nvim/lua/zehcnas34")
+API.module_dir = vim.fn.stdpath("config") .. "/lua/zehcnas34"
 
 -- create a [module_name].lua file in ~/.config/nvim/lua/zehcnas34
 API.create_module = function(module_name)
