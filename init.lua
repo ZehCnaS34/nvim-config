@@ -10,6 +10,7 @@ z34.setup({
         'style',
         'navigation',
         'scaffold',
-        'lsp'
+        'lsp',
+        'task'
     }
 })
