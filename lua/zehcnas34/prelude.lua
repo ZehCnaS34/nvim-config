@@ -49,6 +49,7 @@ function z34.setup(opts)
 
     require('mini.indentscope').setup()
 
+    -- session management
     require('mini.sessions').setup()
     function z34.make_session()
         vim.ui.input({ prompt = 'session/write: ' }, function(input)
@@ -60,8 +61,12 @@ function z34.setup(opts)
             MiniSessions.delete(input)
         end)
     end
+    function z34.list_sessions()
+        MiniSessions.select(input)
+    end
     vim.keymap.set({'n'}, '<leader>sw', z34.make_session)
     vim.keymap.set({'n'}, '<leader>sd', z34.delete_session)
+    vim.keymap.set({'n'}, '<leader>sl', z34.list_sessions)
 
     require('mini.pairs').setup()
 
