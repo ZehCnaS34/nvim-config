@@ -24,4 +24,18 @@ vim.lsp.config['rust-analyzer'] = {
 vim.lsp.enable('rust-analyzer')
 
 
+vim.lsp.config['zls'] = {
+    cmd = {'zls'},
+    filetypes = {'zig','zir'},
+    root_markers = {'zls.json', 'build.zig', '.git'},
+    workspace_required = false,
+}
+vim.lsp.enable('zls')
+
+
+vim.keymap.set('n', '<leader>ca', function()
+    vim.lsp.buf.code_action()
+end)
+
+
 return API
