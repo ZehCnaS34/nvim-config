@@ -1,19 +1,20 @@
 local API = {}
 
 -- files
-require'mini.pick'.setup()
-require'mini.files'.setup()
+require 'mini.pick'.setup()
+require 'mini.files'.setup()
 
 local km = vim.keymap
 
 local function nleadermap(suffix, rhs)
-    km.set('n', '<leader>'..suffix, rhs)
+    km.set('n', '<leader>' .. suffix, rhs)
 end
 
-km.set({'n'}, '<D-x>', FzfLua.commands)
-km.set({'n'}, '<D-p>', FzfLua.files)
-km.set({'n'}, '-', MiniFiles.open)
-nleadermap('pf', FzfLua.files)
+km.set({ 'n' }, '<D-x>', FzfLua.commands)
+km.set({ 'n' }, '<D-p>', FzfLua.files)
+km.set({ 'n' }, '-', MiniFiles.open)
+-- nleadermap('pf', FzfLua.files)
+nleadermap('pf', function() MiniPick.builtin.files({ tool = "fd" }) end)
 nleadermap('<leader>', MiniPick.builtin.buffers)
 nleadermap('pb', MiniPick.builtin.buffers)
 nleadermap('pg', MiniPick.builtin.grep_live)
@@ -36,10 +37,9 @@ km.set('n', '<c-k>', '<c-w>k')
 km.set('n', '<c-l>', '<c-w>l')
 
 -- buffer
-require'mini.bracketed'.setup()
+require 'mini.bracketed'.setup()
 
 -- git
 nleadermap('gs', '<Cmd>term lazygit<cr>')
 
 return API
-
