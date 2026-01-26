@@ -14,3 +14,5 @@ z34.setup({
         'task'
     }
 })
+
+vim.cmd[[colorscheme zonokai]]
