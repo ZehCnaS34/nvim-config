@@ -1,4 +1,5 @@
 local H = {}
+
 function H.make_clamp(min, max)
     return function (v)
         return math.max(math.min(max, v), min)
@@ -15,17 +16,6 @@ function H.hue_to_rgb(p, q, t)
   if t < 2/3 then return p + (q - p) * (2/3 - t) * 6 end
   return p
 end
-
-
-function H.hsl_to_rgb(hsl)
-
-  return {
-    red = r,
-    green = g,
-    blue = b
-  }
-end
-
 
 local colors = {}
 
@@ -55,7 +45,7 @@ setmetatable(rgb, {
 function rgb.new(tbl)
     tbl.kind = T.RGB
     setmetatable(tbl, colors.rgb.mt)
-    return tbl 
+    return tbl
 end
 
 function rgb.parse(str)

@@ -55,7 +55,7 @@ local greend10 = green:darken(20)
 local dark_grey = rgb("#444444")
 local lite_grey = rgb("#eeeeee")
 
-local function fb(fc, bc)
+local function fb(fc, bc, ops)
     assert(fc, "fc should be defined")
     local spec = {fg = tostring(fc)}
     if bc ~= nil then
@@ -64,7 +64,7 @@ local function fb(fc, bc)
     return spec
 end
 
-local function bf(bc, fc)
+local function bf(bc, fc, opts)
     assert(bc, "bc should be defined")
     local spec = {bg = tostring(bc)}
     if fc ~= nil then
@@ -74,48 +74,66 @@ local function bf(bc, fc)
 end
 
 local set_hl = vim.api.nvim_set_hl
-set_hl(0, "comment", fb(blued10))
+local hi = function(...)
+    set_hl(0, ...)
+end
+hi("comment", fb(blued10))
 
-set_hl(0, "normal", fb(base00, base03))
-set_hl(0, "constant", fb(magenta))
--- set_hl(0, "number", fb(magenta))
--- set_hl(0, "string", fb(magenta))
+hi("normal", fb(base00, base03))
+hi("constant", fb(magenta))
+-- hi("number", fb(magenta))
+-- hi("string", fb(magenta))
 
-set_hl(0, "identifier", fb(cyand10))
+hi("identifier", fb(cyand10))
 
-set_hl(0, "statement", fb(blue))
+hi("statement", fb(blue))
 
-set_hl(0, "preproc", fb(bluel10))
+hi("preproc", fb(bluel10))
 
 
-set_hl(0, "type", fb(orangel10))
+hi("type", fb(orangel10))
 
-set_hl(0, "delimiter", {fg = tostring(base01)})
+hi("delimiter", {fg = tostring(base01)})
 
-set_hl(0, "error", fb(base01, redl10))
+hi("error", fb(base01, redl10))
 
 -- TODO: something
-set_hl(0, "todo", fb(base00l))
+hi("todo", fb(base00l))
 
-set_hl(0, "cursearch", fb(base00, violet))
-set_hl(0, "search", fb(base00, violetd10))
+hi("cursearch", fb(base00, violet))
+hi("search", fb(base00, violetd10))
 
-set_hl(0, "cursorline", bf(base02dd))
-set_hl(0, "cursorcolumn", bf(base02dd))
-set_hl(0, "cursorlinenr", bf(base02dd))
-set_hl(0, "linenr", bf(base03dd))
+hi("cursorline", bf(base02dd))
+hi("cursorcolumn", bf(base02dd))
+hi("cursorlinenr", bf(base02dd))
+hi("linenr", bf(base03dd))
+hi("folded", bf(base03dd))
+hi("signcolumn", bf(base03dd))
+hi("foldcolumn", bf(base03dd))
 
-set_hl(0, "search", fb(base00, violetd10))
+hi("search", fb(base00, violetd10))
 
-set_hl(0, "StatusLine", fb(base00))
-set_hl(0, "StatusLineNC", fb(base00))
-set_hl(0, "TabLine", fb(base00))
-set_hl(0, "TabLineFill", fb(base00))
+hi("StatusLine", fb(base00))
+hi("StatusLineNC", fb(base00))
+hi("TabLine", fb(base00))
+hi("TabLineFill", fb(base00))
+hi("winseparator", fb(base02dd))
+hi("winbar", bf(base02dd))
+
+hi("Added", fb(greenl10))
+hi("Changed", fb(orangel10))
+hi("Removed", fb(redl10))
 
 
-set_hl(0, "Added", fb(greenl10))
-set_hl(0, "Changed", fb(orangel10))
-set_hl(0, "Removed", fb(redl10))
+hi("matchparen", fb(base00l, violetd10))
+
+-- completion
+hi("wildmenu", fb(green))
+hi("complmatchins", fb(green))
 
 
-set_hl(0, "matchparen", fb(base00l, violetd10))
+
+hi("visual", bf(green, base03))
+
+
+
