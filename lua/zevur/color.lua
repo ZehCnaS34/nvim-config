@@ -16,6 +16,7 @@ setmetatable(palette, {
         end
 
         setmetatable(color_palatte_instance, {
+            __name = 'palette',
             __call = function (self, name, hex_color_code)
                 if hex_color_code ~= nil then
                     self.cache[name] = rgb(hex_color_code)
@@ -62,7 +63,7 @@ setmetatable(rgb, {
 
 function rgb.new(tbl)
     tbl.kind = T.RGB
-    setmetatable(tbl, rgb.mt)
+    setmetatable(tbl, rgb.meta)
     return tbl
 end
 
@@ -139,18 +140,21 @@ function rgb.lighten(tbl, percent)
     return hsl:to_rgb()
 end
 
-rgb.mt = {
+rgb.meta = {
     __tostring = rgb.tostring,
     __index = {
         to_hsl = rgb.to_hsl,
         darken = rgb.darken,
         lighten = rgb.lighten
-    }
+    },
+    __close = function()
+        vim.print("closing")
+    end
 }
 
 function hsl.new(tbl)
     tbl.kind = T.HSL
-    setmetatable(tbl, hsl.mt)
+    setmetatable(tbl, hsl.meta)
     return tbl
 end
 
@@ -181,7 +185,7 @@ function hsl.to_rgb(form)
     }
 end
 
-hsl.mt = {
+hsl.meta = {
     __tostring = hsl.tostring,
     __index = {
         to_rgb = hsl.to_rgb
@@ -214,17 +218,8 @@ function util.hue_to_rgb(p, q, t)
   return p
 end
 
-
-local p = palette {
-    base0 = "#333333"
-}
-
-vim.print(p"base0")
-vim.print(p"base0+3")
-vim.print(p"base0+44")
-
 return {
-    hsl = hsl,
-    rgb = rgb,
+    hsl     = hsl,
+    rgb     = rgb,
     palette = palette
 }

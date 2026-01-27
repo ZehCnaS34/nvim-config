@@ -56,7 +56,7 @@ hi {
 }
 hi {
     "type",
-    fg = p"orange+20"
+    fg = p"orange+34"
 }
 hi {
     "delimiter",
@@ -91,27 +91,31 @@ hi {
 }
 hi {
     "cursorlinenr", 
-    bg = p"base02-6"
+    -- bg = p"base02-6"
+    bg = p"base03-24",
+    fg = p"base00"
 }
 hi {
     "linenr", 
-    bg = p"base03-6"
+    fg = p"base00-34",
+    bg = p"base03-24"
 }
 hi {
     "folded", 
-    bg = p"base03-6"
+    fg = p"cyan+24",
+    bg = p"base03-30"
 }
 hi {
     "signcolumn", 
-    bg = p"base03-6"
+    bg = p"base03-24"
 }
 hi {
     "foldcolumn", 
-    bg = p"base03-6"
+    bg = p"base03-30"
 }
 hi {
     "StatusLine",
-    bg = p"base03"
+    bg = p"base03-30"
 }
 hi {
     "StatusLineNC",
@@ -145,13 +149,11 @@ hi {
     "Removed",
     fg = p"red+20"
 }
-
 hi {
     "MatchParen",
     fg = p"base00+3",
     bg = p"violet-20"
 }
-
 hi {
     "Visual",
     fg = p"base03",
@@ -174,3 +176,10 @@ hi {
     "MiniFilesBorder",
     fg = p"cyan"
 }
+
+-- MiniStatus
+hi { "MiniStatuslineModeNormal", bg = p"blue-30" }
+hi { "MiniStatuslineModeVisual", bg = p"violet-30" }
+hi { "MiniStatuslineModeCommand", bg = p"cyan-30" }
+hi { "MiniStatuslineModeInsert", bg = p"green-30" }
+hi { "MiniStatuslineModeOther", bg = p"orange-30" }
