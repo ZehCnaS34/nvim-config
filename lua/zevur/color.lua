@@ -1,32 +1,50 @@
-local H = {}
-
-function H.make_clamp(min, max)
-    return function (v)
-        return math.max(math.min(max, v), min)
-    end
-end
-
-H.clamp = H.make_clamp(0, 1)
-
-function H.hue_to_rgb(p, q, t)
-  if t < 0 then t = t + 1 end
-  if t > 1 then t = t - 1 end
-  if t < 1/6 then return p + (q - p) * 6 * t end
-  if t < 1/2 then return q end
-  if t < 2/3 then return p + (q - p) * (2/3 - t) * 6 end
-  return p
-end
-
-local colors = {}
-
-local rgb = {}
-colors.rgb = rgb 
-
+local palette, rgb, hsl, util = {}, {}, {}, {}
 
 local T = {
     RGB = 0b00001,
     HSL = 0b00010
 }
+
+setmetatable(palette, {
+    __call = function(self, alias2color_table)
+        local color_palatte_instance = {
+            cache = {}
+        }
+
+        for alias, hex_code in pairs(alias2color_table) do
+            color_palatte_instance.cache[alias] = rgb(hex_code)
+        end
+
+        setmetatable(color_palatte_instance, {
+            __call = function (self, name, hex_color_code)
+                if hex_color_code ~= nil then
+                    self.cache[name] = rgb(hex_color_code)
+                    return tostring(self.cache[name])
+                end
+
+                if util.is_augment(name) then
+                    if self.cache[name] then
+                        return tostring(self.cache[name])
+                    end
+                    local augment = util.parse_augment(name)
+                    local color = self.cache[augment.alias]
+                    assert(color, "color basis does not exist in cache")
+                    if augment.strategy == "+" then
+                        self.cache[name] = color:lighten(augment.adjust_percentage)
+                    else
+                        self.cache[name] = color:darken(augment.adjust_percentage)
+                    end
+                    return tostring(self.cache[name])
+                end
+
+                assert(self.cache[name], string.format("color %s not found", name))
+                return tostring(self.cache[name])
+            end
+        })
+
+        return color_palatte_instance
+    end
+})
 
 setmetatable(rgb, {
     __call = function (_, form)
@@ -44,7 +62,7 @@ setmetatable(rgb, {
 
 function rgb.new(tbl)
     tbl.kind = T.RGB
-    setmetatable(tbl, colors.rgb.mt)
+    setmetatable(tbl, rgb.mt)
     return tbl
 end
 
@@ -67,7 +85,7 @@ function rgb.tostring(obj)
     return "#" .. red .. green .. blue
 end
 
-function rgb.hsl(form)
+function rgb.to_hsl(form)
     local r, g, b = form.red, form.green, form.blue
 
     local max = math.max(r, g, b)
@@ -98,7 +116,7 @@ function rgb.hsl(form)
         h = h / 6
     end
 
-    return colors.hsl.new{
+    return hsl.new{
         hue = h,
         saturation = s,
         lightness = l,
@@ -106,34 +124,33 @@ function rgb.hsl(form)
 end
 
 function rgb.darken(tbl, percent)
-    local hsl = tbl:hsl()
+    local hsl = tbl:to_hsl()
     local amount = hsl.lightness * (percent / 100)
-    hsl.lightness = H.clamp(hsl.lightness-amount)
-    return hsl:rgb()
+    -- local amount = 255 * (percent / 100)
+    hsl.lightness = util.clamp(hsl.lightness-amount)
+    return hsl:to_rgb()
 end
 
 function rgb.lighten(tbl, percent)
-    local hsl = tbl:hsl()
+    local hsl = tbl:to_hsl()
     local amount = hsl.lightness * (percent / 100)
-    hsl.lightness = H.clamp(hsl.lightness+amount)
-    return hsl:rgb()
+    -- local amount = 255 * (percent / 100)
+    hsl.lightness = util.clamp(hsl.lightness+amount)
+    return hsl:to_rgb()
 end
 
 rgb.mt = {
     __tostring = rgb.tostring,
     __index = {
-        hsl = rgb.hsl,
+        to_hsl = rgb.to_hsl,
         darken = rgb.darken,
         lighten = rgb.lighten
     }
 }
 
-
-local hsl = {}
-
 function hsl.new(tbl)
     tbl.kind = T.HSL
-    setmetatable(tbl, colors.hsl.mt)
+    setmetatable(tbl, hsl.mt)
     return tbl
 end
 
@@ -141,7 +158,7 @@ function hsl.tostring(obj)
     return string.format("hsl(%s, %s, %s)", obj.hue, obj.saturation, obj.lightness)
 end
 
-function hsl.rgb(form)
+function hsl.to_rgb(form)
     local h, s, l = form.hue, form.saturation, form.lightness
     local r, g, b
 
@@ -152,9 +169,9 @@ function hsl.rgb(form)
         local q = l < 0.5 and l * (1 + s) or l + s - l * s
         local p = 2 * l - q
 
-        r = H.hue_to_rgb(p, q, h + 1/3)
-        g = H.hue_to_rgb(p, q, h)
-        b = H.hue_to_rgb(p, q, h - 1/3)
+        r = util.hue_to_rgb(p, q, h + 1/3)
+        g = util.hue_to_rgb(p, q, h)
+        b = util.hue_to_rgb(p, q, h - 1/3)
     end
 
     return rgb.new{
@@ -167,11 +184,47 @@ end
 hsl.mt = {
     __tostring = hsl.tostring,
     __index = {
-        rgb = hsl.rgb
+        to_rgb = hsl.to_rgb
     },
 }
 
-colors.hsl = hsl
+function util.is_augment(color_name)
+    return color_name:find("+") or color_name:find("-")
+end
+
+function util.parse_augment(color_name)
+    local index = util.is_augment(color_name)
+    return {
+        strategy          = color_name:sub(index, index),
+        alias             = color_name:sub(1, index-1),
+        adjust_percentage = tonumber(color_name:sub(index+1), 10)
+    }
+end
+
+function util.clamp(v)
+    return math.max(math.min(1, v), 0)
+end
+
+function util.hue_to_rgb(p, q, t)
+  if t < 0 then t = t + 1 end
+  if t > 1 then t = t - 1 end
+  if t < 1/6 then return p + (q - p) * 6 * t end
+  if t < 1/2 then return q end
+  if t < 2/3 then return p + (q - p) * (2/3 - t) * 6 end
+  return p
+end
 
 
-return colors
+local p = palette {
+    base0 = "#333333"
+}
+
+vim.print(p"base0")
+vim.print(p"base0+3")
+vim.print(p"base0+44")
+
+return {
+    hsl = hsl,
+    rgb = rgb,
+    palette = palette
+}

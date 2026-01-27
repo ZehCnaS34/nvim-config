@@ -1,139 +1,176 @@
 local color = require'zevur.color'
 local rgb, hsl = color.rgb, color.hsl
 
-local base00   = rgb("#eeeeee")
-local base00d  = base00:darken(3)
-local base00dd = base00d:darken(6)
-local base00l = base00:lighten(3)
-local base01   = rgb("#c6c6c6")
-local base01d  = base01:darken(3)
-local base01dd = base01d:darken(6)
-local base02   = rgb("#023658")
-local base02d  = base02:darken(3)
-local base02dd = base02d:darken(6)
-local base03   = rgb("#011827")
-local base03d  = base03:darken(3)
-local base03dd = base03d:darken(6)
-local base03l = base00:lighten(3)
+local p = color.palette {
+    base00    = "#eeeeee",
+    base01    = "#c6c6c6",
+    base02    = "#023658",
+    base03    = "#011827",
+    yellow    = "#E2D511",
+    orange    = "#FF5C40",
+    brown     = "#B26800",
+    red       = "#CC1514",
+    magenta   = "#E318FF",
+    violet    = "#6C71C4",
+    blue      = "#3D7599",
+    cyan      = "#00FFDA",
+    green     = "#A6E22E",
+    dark_grey = "#444444",
+    lite_grey = "#eeeeee",
+}
 
-local yellow    = rgb("#E2D511")
-local yellowl10 = yellow:lighten(20)
-local yellowd10 = yellow:darken(20)
-
-local orange    = rgb("#FF5C40")
-local orangel10 = orange:lighten(20)
-local oranged10 = orange:darken(20)
-
-local brown = rgb("#B26800")
-local brownl10 = brown:lighten(20)
-local brownd10 = brown:darken(20)
-
-local red = rgb("#CC1514")
-local redl10 = red:lighten(20)
-local redd10 = red:darken(20)
-
-local magenta = rgb("#E318FF")
-local magental10 = magenta:lighten(20)
-local magentad10 = magenta:darken(20)
-
-local violet = rgb("#6C71C4")
-local violetl10 = violet:lighten(20)
-local violetd10 = violet:darken(20)
-
-local blue = rgb("#3D7599")
-local bluel10 = blue:lighten(20)
-local blued10 = blue:darken(20)
-
-local cyan = rgb("#00FFDA")
-local cyanl10 = cyan:lighten(20)
-local cyand10 = cyan:darken(20)
-
-local green = rgb("#A6E22E")
-local greenl10 = green:lighten(20)
-local greend10 = green:darken(20)
-
-local dark_grey = rgb("#444444")
-local lite_grey = rgb("#eeeeee")
-
-local function fb(fc, bc, ops)
-    assert(fc, "fc should be defined")
-    local spec = {fg = tostring(fc)}
-    if bc ~= nil then
-        spec.bg = tostring(bc)
-    end
-    return spec
+local function hi(tbl)
+    local group = table.remove(tbl, 1)
+    assert(group, "`hi` needs a group in position 1")
+    vim.api.nvim_set_hl(0, group, tbl)
 end
 
-local function bf(bc, fc, opts)
-    assert(bc, "bc should be defined")
-    local spec = {bg = tostring(bc)}
-    if fc ~= nil then
-        spec.fg = tostring(fc)
-    end
-    return spec
-end
 
-local set_hl = vim.api.nvim_set_hl
-local hi = function(...)
-    set_hl(0, ...)
-end
-hi("comment", fb(blued10))
+hi {
+    "normal",
+    fg = p"base00",
+    bg = p"base03"
 
-hi("normal", fb(base00, base03))
-hi("constant", fb(magenta))
--- hi("number", fb(magenta))
--- hi("string", fb(magenta))
+}
 
-hi("identifier", fb(cyand10))
+hi {
+    "comment",
+    fg = p"blue-20",
+}
+hi {
+    "constant",
+    fg = p"magenta",
+}
+hi {
+    "identifier",
+    fg = p"cyan-20"
+}
+hi {
+    "statement",
+    fg = p"blue",
+}
 
-hi("statement", fb(blue))
+hi {
+    "preproc",
+    fg = p"blue+20"
+}
+hi {
+    "type",
+    fg = p"orange+20"
+}
+hi {
+    "delimiter",
+    fg = p"base01"
+}
+hi {
+    "error",
+    fg = p"base01",
+    bg = p"red+20"
+}
+hi {
+    "todo",
+    fg = p"base00+3"
+}
+hi {
+    "cursearch",
+    fg = p"base00",
+    bg = p"violet"
+}
+hi {
+    "search", 
+    fg = p"base00",
+    bg = p"violet-20"
+}
+hi {
+    "cursorline", 
+    bg = p"base02-6"
+}
+hi {
+    "cursorcolumn", 
+    bg = p"base02-6"
+}
+hi {
+    "cursorlinenr", 
+    bg = p"base02-6"
+}
+hi {
+    "linenr", 
+    bg = p"base03-6"
+}
+hi {
+    "folded", 
+    bg = p"base03-6"
+}
+hi {
+    "signcolumn", 
+    bg = p"base03-6"
+}
+hi {
+    "foldcolumn", 
+    bg = p"base03-6"
+}
+hi {
+    "StatusLine",
+    bg = p"base03"
+}
+hi {
+    "StatusLineNC",
+    bg = p"base03-30"
+}
+hi {
+    "TabLine",
+    fg = p"base00"
+}
+hi {
+    "TabLineFill",
+    fg = p"base00"
+}
+hi {
+    "WinSeparator",
+    fg = p"base02-6"
+}
+hi {
+    "WinBar",
+    bg = p"base02-6"
+}
+hi {
+    "Added",
+    fg = p"green+20"
+}
+hi {
+    "Changed",
+    fg = p"orange+20"
+}
+hi {
+    "Removed",
+    fg = p"red+20"
+}
 
-hi("preproc", fb(bluel10))
+hi {
+    "MatchParen",
+    fg = p"base00+3",
+    bg = p"violet-20"
+}
 
+hi {
+    "Visual",
+    fg = p"base03",
+    bg = p"green"
+}
 
-hi("type", fb(orangel10))
+-- MiniPick
+hi {
+    "MiniPickNormal",
+    fg = p"base00",
+    bg = p"base03-3",
+}
+hi {
+    "MiniPickBorder",
+    fg = p"cyan"
+}
 
-hi("delimiter", {fg = tostring(base01)})
-
-hi("error", fb(base01, redl10))
-
--- TODO: something
-hi("todo", fb(base00l))
-
-hi("cursearch", fb(base00, violet))
-hi("search", fb(base00, violetd10))
-
-hi("cursorline", bf(base02dd))
-hi("cursorcolumn", bf(base02dd))
-hi("cursorlinenr", bf(base02dd))
-hi("linenr", bf(base03dd))
-hi("folded", bf(base03dd))
-hi("signcolumn", bf(base03dd))
-hi("foldcolumn", bf(base03dd))
-
-hi("search", fb(base00, violetd10))
-
-hi("StatusLine", fb(base00))
-hi("StatusLineNC", fb(base00))
-hi("TabLine", fb(base00))
-hi("TabLineFill", fb(base00))
-hi("winseparator", fb(base02dd))
-hi("winbar", bf(base02dd))
-
-hi("Added", fb(greenl10))
-hi("Changed", fb(orangel10))
-hi("Removed", fb(redl10))
-
-
-hi("matchparen", fb(base00l, violetd10))
-
--- completion
-hi("wildmenu", fb(green))
-hi("complmatchins", fb(green))
-
-
-
-hi("visual", bf(green, base03))
-
-
-
+-- MiniFiles
+hi {
+    "MiniFilesBorder",
+    fg = p"cyan"
+}
