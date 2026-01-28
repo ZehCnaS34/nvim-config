@@ -131,7 +131,7 @@ hi {
 }
 hi {
     "WinSeparator",
-    fg = p"base02-6"
+    fg = p"blue-30"
 }
 hi {
     "WinBar",
@@ -168,18 +168,18 @@ hi {
 }
 hi {
     "MiniPickBorder",
-    fg = p"cyan"
+    fg = p"blue-30",
 }
 
 -- MiniFiles
 hi {
     "MiniFilesBorder",
-    fg = p"cyan"
+    fg = p"blue-30"
 }
 
 -- MiniStatus
 hi { "MiniStatuslineModeNormal", bg = p"blue-30" }
 hi { "MiniStatuslineModeVisual", bg = p"violet-30" }
 hi { "MiniStatuslineModeCommand", bg = p"cyan-30" }
-hi { "MiniStatuslineModeInsert", bg = p"green-30" }
+hi { "MiniStatuslineModeInsert", bg = p"yellow-30" }
 hi { "MiniStatuslineModeOther", bg = p"orange-30" }
