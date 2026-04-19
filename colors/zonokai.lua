@@ -1,4 +1,4 @@
-local color = require'zevur.color'
+local color = require'zehcnas34.color'
 local rgb, hsl = color.rgb, color.hsl
 
 local p = color.palette {
@@ -77,40 +77,40 @@ hi {
     bg = p"violet"
 }
 hi {
-    "search", 
+    "search",
     fg = p"base00",
     bg = p"violet-20"
 }
 hi {
-    "cursorline", 
+    "cursorline",
     bg = p"base02-6"
 }
 hi {
-    "cursorcolumn", 
+    "cursorcolumn",
     bg = p"base02-6"
 }
 hi {
-    "cursorlinenr", 
+    "cursorlinenr",
     -- bg = p"base02-6"
     bg = p"base03-24",
     fg = p"base00"
 }
 hi {
-    "linenr", 
+    "linenr",
     fg = p"base00-34",
     bg = p"base03-24"
 }
 hi {
-    "folded", 
+    "folded",
     fg = p"cyan+24",
     bg = p"base03-30"
 }
 hi {
-    "signcolumn", 
+    "signcolumn",
     bg = p"base03-24"
 }
 hi {
-    "foldcolumn", 
+    "foldcolumn",
     bg = p"base03-30"
 }
 hi {
