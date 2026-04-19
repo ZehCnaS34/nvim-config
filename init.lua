@@ -1,3 +1,7 @@
+require('vim._core.ui2').enable {
+    enable = true
+}
+
 vim.cmd[[colorscheme zonokai]]
 
 vim.g.mapleader = ' '
@@ -47,9 +51,26 @@ require('mini.cmdline').setup()
 
 require('mini.pairs').setup()
 
+require('mini.statusline').setup()
+
+require('mini.starter').setup()
+
+require('mini.sessions').setup()
+
+
 -- keymaps
 
 vim.keymap.set({'n'}, '<D-p>', '<cmd>Pick files<cr>', {desc = "Pick files"})
 vim.keymap.set({'n'}, '<D-F>', '<cmd>Pick grep_live<cr>', {desc = "Grep Live"})
 vim.keymap.set({'n'}, '<leader>gs', '<cmd>Neogit<cr>', {desc = "Git status"})
 vim.keymap.set({'n'}, '<leader>?', function() require('which-key').show({global = false}) end)
+
+-- lsp
+
+vim.lsp.enable({
+    'lua_ls',
+    'rust_analyzer',
+    'ts_ls',
+    'html',
+    'marksman'
+})
