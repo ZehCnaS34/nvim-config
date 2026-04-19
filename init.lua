@@ -1,12 +1,15 @@
 -- early configuration
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
-
 vim.g.mapleader = ' '
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+
 vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.signcolumn = 'yes:1'
+vim.opt.tabstop = 4
+vim.opt.termguicolors = true -- replaced by plugin
+vim.opt.rnu = true
+vim.opt.nu = true
 
 require('vim._core.ui2').enable {
     enable = true
@@ -26,6 +29,7 @@ vim.pack.add {
     "https://github.com/saghen/blink.cmp",
     "https://github.com/tpope/vim-sleuth",
     "https://github.com/stevearc/oil.nvim",
+    "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/neogitorg/neogit",
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/folke/which-key.nvim",
@@ -68,6 +72,8 @@ require('mini.sessions').setup()
 require('oil').setup()
 
 require("nvim-tree").setup()
+
+require('gitsigns').setup()
 
 
 -- keymaps

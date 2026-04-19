@@ -16,6 +16,10 @@
       "rev": "834246377489f9a1e6d4df570a7874a48c644b56",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "gitsigns.nvim": {
+      "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "neogit": {
       "rev": "d1cfc4986195239cac55700b675cea7a9578d430",
       "src": "https://github.com/neogitorg/neogit"
