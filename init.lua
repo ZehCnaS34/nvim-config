@@ -1,13 +1,20 @@
+-- early configuration
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+vim.g.mapleader = ' '
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
+
 require('vim._core.ui2').enable {
     enable = true
 }
 
 vim.cmd[[colorscheme zonokai]]
 
-vim.g.mapleader = ' '
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.expandtab = true
+-- plugin installation
 
 vim.pack.add {
     "https://github.com/brenoprata10/nvim-highlight-colors",
@@ -23,6 +30,7 @@ vim.pack.add {
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/folke/which-key.nvim",
     "https://github.com/sindrets/diffview.nvim",
+    "https://github.com/nvim-tree/nvim-tree.lua",
 }
 
 
@@ -57,13 +65,19 @@ require('mini.starter').setup()
 
 require('mini.sessions').setup()
 
+require('oil').setup()
+
+require("nvim-tree").setup()
+
 
 -- keymaps
 
 vim.keymap.set({'n'}, '<D-p>', '<cmd>Pick files<cr>', {desc = "Pick files"})
 vim.keymap.set({'n'}, '<D-F>', '<cmd>Pick grep_live<cr>', {desc = "Grep Live"})
+vim.keymap.set({'n'}, '<D-b>', '<cmd>NvimTreeToggle<cr>', {desc = "NvimTreeToggle"})
 vim.keymap.set({'n'}, '<leader>gs', '<cmd>Neogit<cr>', {desc = "Git status"})
 vim.keymap.set({'n'}, '<leader>?', function() require('which-key').show({global = false}) end)
+vim.keymap.set({'n'}, '-', '<cmd>Oil<cr>', {desc = "Grep Live"})
 
 -- lsp
 
