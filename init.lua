@@ -21,30 +21,34 @@ vim.cmd[[colorscheme zonokai]]
 
 vim.pack.add {
     "https://github.com/brenoprata10/nvim-highlight-colors",
+    "https://github.com/folke/which-key.nvim",
     "https://github.com/ibhagwan/fzf-lua",
-    "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/nvim-tree/nvim-web-devicons",
-    "https://github.com/nvim-treesitter/nvim-treesitter",
-    "https://github.com/rafamadriz/friendly-snippets",
-    "https://github.com/saghen/blink.cmp",
-    "https://github.com/tpope/vim-sleuth",
-    "https://github.com/stevearc/oil.nvim",
     "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/neogitorg/neogit",
+    "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/nvim-lua/plenary.nvim",
-    "https://github.com/folke/which-key.nvim",
-    "https://github.com/sindrets/diffview.nvim",
+    "https://github.com/nvim-mini/mini.nvim",
     "https://github.com/nvim-tree/nvim-tree.lua",
+    "https://github.com/nvim-tree/nvim-web-devicons",
+    "https://github.com/rafamadriz/friendly-snippets",
+    "https://github.com/saghen/blink.cmp",
+    "https://github.com/sindrets/diffview.nvim",
+    "https://github.com/stevearc/oil.nvim",
+    "https://github.com/tpope/vim-sleuth",
+    {src="https://github.com/nvim-treesitter/nvim-treesitter",version="main"} ,
 }
-
 
 require('blink-cmp').setup()
 
-require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'lua', 'vimdoc', 'rust', 'python', 'javascript', 'haskell', 'zig' },
-    version = 'main',
-    highlight = { enable = true },
-}
+do
+    local tree_sitter = require('nvim-treesitter')
+    tree_sitter.setup {
+        install_dir = vim.fn.stdpath('data') .. '/site'
+    }
+    tree_sitter.install {
+        'rust', 'clojure', 'lua', 'javascript', 'typescript', 'zig', 'html'
+    }
+end
 
 require('fzf-lua').setup()
 
