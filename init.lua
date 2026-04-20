@@ -92,5 +92,7 @@ vim.lsp.enable({
     'rust_analyzer',
     'ts_ls',
     'html',
-    'marksman'
+    'marksman',
+    'nixd',
+    'nil_ls',
 })
