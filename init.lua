@@ -35,6 +35,7 @@ vim.pack.add {
     "https://github.com/sindrets/diffview.nvim",
     "https://github.com/stevearc/oil.nvim",
     "https://github.com/tpope/vim-sleuth",
+    {src="https://github.com/oribarilan/lensline.nvim",version="release/2.x"} ,
     {src="https://github.com/nvim-treesitter/nvim-treesitter",version="main"} ,
 }
 
@@ -79,18 +80,24 @@ require("nvim-tree").setup()
 
 require('gitsigns').setup()
 
+require('lensline').setup()
 
 -- keymaps
-
 vim.keymap.set({'n'}, '<D-p>', '<cmd>Pick files<cr>', {desc = "Pick files"})
 vim.keymap.set({'n'}, '<D-F>', '<cmd>Pick grep_live<cr>', {desc = "Grep Live"})
 vim.keymap.set({'n'}, '<D-b>', '<cmd>NvimTreeToggle<cr>', {desc = "NvimTreeToggle"})
 vim.keymap.set({'n'}, '<leader>gs', '<cmd>Neogit<cr>', {desc = "Git status"})
 vim.keymap.set({'n'}, '<leader>?', function() require('which-key').show({global = false}) end)
 vim.keymap.set({'n'}, '-', '<cmd>Oil<cr>', {desc = "Grep Live"})
+vim.keymap.set({'n'}, '<leader>wh', '<C-w>h')
+vim.keymap.set({'n'}, '<leader>wj', '<C-w>j')
+vim.keymap.set({'n'}, '<leader>wk', '<C-w>k')
+vim.keymap.set({'n'}, '<leader>wl', '<C-w>l')
+vim.keymap.set({'n'}, '<leader>ws', '<C-w>s')
+vim.keymap.set({'n'}, '<leader>wv', '<C-w>v')
+vim.keymap.set({'n'}, '<leader>wq', '<C-w>c')
 
 -- lsp
-
 vim.lsp.enable({
     'lua_ls',
     'rust_analyzer',
