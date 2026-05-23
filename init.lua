@@ -15,7 +15,6 @@ require('vim._core.ui2').enable {
     enable = true
 }
 
-vim.cmd[[colorscheme zonokai]]
 
 -- plugin installation
 
@@ -35,6 +34,7 @@ vim.pack.add {
     "https://github.com/sindrets/diffview.nvim",
     "https://github.com/stevearc/oil.nvim",
     "https://github.com/tpope/vim-sleuth",
+    "https://github.com/Olical/conjure",
     {src="https://github.com/oribarilan/lensline.nvim",version="release/2.x"} ,
     {src="https://github.com/nvim-treesitter/nvim-treesitter",version="main"} ,
 }
@@ -106,4 +106,11 @@ vim.lsp.enable({
     'marksman',
     'nixd',
     'nil_ls',
+    'clojure_lsp',
 })
+
+-- extensions
+
+require('zehcnas34.pickers')
+
+vim.cmd[[colorscheme minischeme]]
