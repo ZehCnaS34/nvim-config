@@ -1,7 +1,11 @@
--- early configuration
+-- zehcnas34
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
+
+-- conjure overrides
+vim.g['conjure#filetypes'] = {'clojure'}
 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
@@ -11,35 +15,44 @@ vim.opt.termguicolors = true -- replaced by plugin
 vim.opt.rnu = true
 vim.opt.nu = true
 
+
 require('vim._core.ui2').enable {
     enable = true
 }
 
-
 -- plugin installation
 
-vim.pack.add {
-    "https://github.com/brenoprata10/nvim-highlight-colors",
-    "https://github.com/folke/which-key.nvim",
-    "https://github.com/ibhagwan/fzf-lua",
-    "https://github.com/lewis6991/gitsigns.nvim",
-    "https://github.com/neogitorg/neogit",
-    "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/nvim-lua/plenary.nvim",
-    "https://github.com/nvim-mini/mini.nvim",
-    "https://github.com/nvim-tree/nvim-tree.lua",
-    "https://github.com/nvim-tree/nvim-web-devicons",
-    "https://github.com/rafamadriz/friendly-snippets",
-    "https://github.com/saghen/blink.cmp",
-    "https://github.com/sindrets/diffview.nvim",
-    "https://github.com/stevearc/oil.nvim",
-    "https://github.com/tpope/vim-sleuth",
-    "https://github.com/Olical/conjure",
-    {src="https://github.com/oribarilan/lensline.nvim",version="release/2.x"} ,
-    {src="https://github.com/nvim-treesitter/nvim-treesitter",version="main"} ,
-}
+do
+    local function gh(x) return 'https://github.com/' .. x end
 
-require('blink-cmp').setup()
+    vim.pack.add {
+        gh("brenoprata10/nvim-highlight-colors"),
+        gh("folke/which-key.nvim"),
+        gh("ibhagwan/fzf-lua"),
+        gh("lewis6991/gitsigns.nvim"),
+        gh("neogitorg/neogit"),
+        gh("neovim/nvim-lspconfig"),
+        gh("nvim-lua/plenary.nvim"),
+        gh("nvim-mini/mini.nvim"),
+        gh("nvim-tree/nvim-tree.lua"),
+        gh("nvim-tree/nvim-web-devicons"),
+        gh("rafamadriz/friendly-snippets"),
+        gh("saghen/blink.lib"),
+        gh("saghen/blink.cmp"),
+        gh("sindrets/diffview.nvim"),
+        gh("stevearc/oil.nvim"),
+        gh("tpope/vim-sleuth"),
+        gh("Olical/conjure"),
+        {src=gh("oribarilan/lensline.nvim"),version="release/2.x"},
+        {src=gh("nvim-treesitter/nvim-treesitter"),version="main"},
+    }
+end
+
+do
+    local cmp = require('blink.cmp')
+    cmp.build():pwait()
+    cmp.setup()
+end
 
 do
     local tree_sitter = require('nvim-treesitter')
@@ -70,8 +83,6 @@ require('mini.pairs').setup()
 
 require('mini.statusline').setup()
 
-require('mini.starter').setup()
-
 require('mini.sessions').setup()
 
 require('oil').setup()
@@ -83,8 +94,10 @@ require('gitsigns').setup()
 require('lensline').setup()
 
 -- keymaps
-vim.keymap.set({'n'}, '<D-p>', '<cmd>Pick files<cr>', {desc = "Pick files"})
-vim.keymap.set({'n'}, '<D-F>', '<cmd>Pick grep_live<cr>', {desc = "Grep Live"})
+vim.keymap.set({'n'}, ';f', '<cmd>FzfLua files<cr>', {desc = "Pick files"})
+vim.keymap.set({'n'}, ';b', '<cmd>FzfLua buffers<cr>', {desc = "Pick buffers"})
+vim.keymap.set({'n'}, ';;', '<cmd>FzfLua resume<cr>', {desc = "Pick resume"})
+vim.keymap.set({'n'}, ';g', '<cmd>FzfLua grep<cr>', {desc = "Grep Live"})
 vim.keymap.set({'n'}, '<D-b>', '<cmd>NvimTreeToggle<cr>', {desc = "NvimTreeToggle"})
 vim.keymap.set({'n'}, '<leader>gs', '<cmd>Neogit<cr>', {desc = "Git status"})
 vim.keymap.set({'n'}, '<leader>?', function() require('which-key').show({global = false}) end)
@@ -113,4 +126,4 @@ vim.lsp.enable({
 
 require('zehcnas34.pickers')
 
-vim.cmd[[colorscheme minischeme]]
+
